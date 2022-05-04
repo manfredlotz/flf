@@ -6,7 +6,7 @@ description = "Find largest files in directory trees."
 homepage = "https://github.com/manfredlotz/flf"
 repository = "https://github.com/manfredlotz/flf"
 keywords = ["search", "find"]
-categories = ["command-line-utilities", "development-tools", "search"]
+categories = ["command-line-utilities", "development-tools"]
 license = "MIT/Apache-2.0"
 edition = "2021"
 
