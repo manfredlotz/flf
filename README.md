@@ -13,6 +13,11 @@ Other similar utilities
 - https://github.com/noahrinehart/lrg
 
 
+# Installing
+
+Could be installed with cargo, i.e. `cargo install flf` or by downloading the
+static binary from https://github.com/manfredlotz/flf/releases .
+
 # Usage
 
 ## Getting help information
