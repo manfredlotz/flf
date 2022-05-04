@@ -17,7 +17,28 @@ Other similar utilities
 
 ## Getting help information
 
-Run `flf --help` to get usage information.
+Run `flf --help` to get help.
+
+```
+flf 0.1.0
+Manfred Lotz <manfred.lotz@posteo.de>
+Find largest files in directory trees.
+
+USAGE:
+    flf [OPTIONS] [DIRS]...
+
+ARGS:
+    <DIRS>...    Specify directories to check for largest files
+
+OPTIONS:
+    -G                                       Show sizes in powers of ten
+        --generate-completion <GENERATOR>    [possible values: bash, elvish, fish, powershell, zsh]
+    -h, --help                               Print help information
+    -n <NUMFILES>                            Number of files to display [default: 10]
+        --skip-hidden                        Skip hidden files and directories
+    -V, --version                            Print version information
+    -X                                       Don't descend into other file systems
+```
 
 ## Find largest files
 
@@ -68,9 +89,4 @@ Example for fish:
 ````
 flf --generate-completion fish > ~/.config/fish/completions/flf.fish
 ````
-
-
-
-
-
 
