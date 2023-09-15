@@ -1,6 +1,6 @@
 [package]
 name = "flf"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Manfred Lotz <manfred.lotz@posteo.de>"]
 description = "Find largest files in directory trees."
 homepage = "https://github.com/manfredlotz/flf"
