@@ -168,15 +168,15 @@ fn search_directory_tree(args: &Args) -> i32 {
                     if args.skip_hidden && file_name.starts_with('.') {
                         continue;
                     }
-                    let metadata = match dir_entry.metadata() {
-                        Ok(md) => md,
-                        Err(e) => panic!("Error retrieving metadata: {}", e),
+                    match dir_entry.metadata() {
+                        Ok(md) => {
+                            if !md.is_file() {
+                                continue;
+                            }
+                            filesizes.add_file(md.len(), &dir_entry.path().to_string_lossy());
+                        }
+                        Err(e) => println!("Error retrieving metadata: {}", e),
                     };
-
-                    if !metadata.is_file() {
-                        continue;
-                    }
-                    filesizes.add_file(metadata.len(), &dir_entry.path().to_string_lossy());
                 }
                 Err(e) => {
                     eprintln!("{}", e);
