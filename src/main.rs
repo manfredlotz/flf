@@ -10,7 +10,7 @@ use std::fs;
 use std::io;
 use std::process;
 
-use humansize::{file_size_opts as options, FileSize};
+use humansize::{format_size, BINARY, DECIMAL};
 
 #[derive(Parser, Debug, PartialEq)]
 #[clap(author, version, about, long_about = None,arg_required_else_help(true))]
@@ -18,7 +18,7 @@ struct Args {
     #[clap(help="Specify directories to check for largest files", value_hint = ValueHint::DirPath)]
     dirs: Vec<String>,
     #[clap(default_value_t = 10, short = 'n', help = "Number of files to display")]
-    numfiles: u64,
+    numfiles: usize,
     #[clap(short = 'X', help = "Don't descend into other file systems")]
     xdev: bool,
     #[clap(short = 'G', help = "Show sizes in powers of ten")]
@@ -56,17 +56,17 @@ struct FileSizes {
     // we have Vec<String< because it could happen
     // that there is more than a single file with
     // a certain size
-    fsmap: LiteMap<u64, Vec<String>>,
+    fsmap: LiteMap<usize, Vec<String>>,
     // the smallest file we have in the LiteMap
-    smallest: u64,
+    smallest: usize,
     // the number of files we have in the fsmap
-    numfiles: u64,
+    numfiles: usize,
     // maximum number of largest files to keep
-    maxfiles: u64,
+    maxfiles: usize,
 }
 
 impl FileSizes {
-    fn new(maxfiles: u64) -> FileSizes {
+    fn new(maxfiles: usize) -> FileSizes {
         FileSizes {
             fsmap: LiteMap::new(),
             smallest: 0,
@@ -75,7 +75,7 @@ impl FileSizes {
         }
     }
 
-    fn add_file(&mut self, sz: u64, filename: &str) {
+    fn add_file(&mut self, sz: usize, filename: &str) {
         // first we fill the list of largest files according to self.maxfiles
         if self.numfiles < self.maxfiles {
             if self.numfiles == 0 {
@@ -127,9 +127,9 @@ impl FileSizes {
     fn show_results(&mut self, gigabyte: bool) {
         for (key, value) in self.fsmap.iter_mut() {
             let fkey = if gigabyte {
-                key.file_size(options::DECIMAL).unwrap()
+                format_size(*key, DECIMAL)
             } else {
-                key.file_size(options::BINARY).unwrap()
+                format_size(*key, BINARY)
             };
             println!("{:>10} {}", fkey, value[0]);
 
@@ -173,7 +173,11 @@ fn search_directory_tree(args: &Args) -> i32 {
                             if !md.is_file() {
                                 continue;
                             }
-                            filesizes.add_file(md.len(), &dir_entry.path().to_string_lossy());
+                            filesizes.add_file(
+                                md.len().try_into().unwrap(),
+                                &dir_entry.path().to_string_lossy(),
+                            );
+                            //                            filesizes.add_file(md.len(), &dir_entry.path().to_string_lossy());
                         }
                         Err(e) => println!("Error retrieving metadata: {}", e),
                     };
