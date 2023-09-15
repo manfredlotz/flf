@@ -25,7 +25,7 @@ static binary from https://github.com/manfredlotz/flf/releases .
 Run `flf --help` to get help.
 
 ```
-flf 0.1.0
+flf 0.1.1
 Manfred Lotz <manfred.lotz@posteo.de>
 Find largest files in directory trees.
 
