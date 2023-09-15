@@ -11,8 +11,8 @@ license = "MIT/Apache-2.0"
 edition = "2021"
 
 [dependencies]
-clap = { version = "3.1.11", features = ["derive"] }
-clap_complete = "3.1.2"
+clap = { version = "4.4", features = ["derive"] }
+clap_complete = "4.4"
 humansize = "1.1.1"
 litemap = "0.3.0"
-walkdir = "2.3.2"
+jwalk = "0.8.1"

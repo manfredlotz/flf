@@ -25,7 +25,7 @@ struct Args {
     gigabyte: bool,
     #[clap(long = "skip-hidden", help = "Skip hidden files and directories")]
     skip_hidden: bool,
-    #[clap(long = "generate-completion", group = "only_one", arg_enum)]
+    #[clap(long = "generate-completion", group = "only_one", value_enum)]
     generator: Option<Shell>,
 }
 
