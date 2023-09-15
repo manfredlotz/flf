@@ -15,4 +15,4 @@ clap = { version = "4.4", features = ["derive"] }
 clap_complete = "4.4"
 humansize = "2"
 litemap = "0.7.0"
-jwalk = "0.8.1"
+walkdir = "2.4.0"
