@@ -15,17 +15,17 @@ use humansize::{format_size, BINARY, DECIMAL};
 #[derive(Parser, Debug, PartialEq)]
 #[clap(author, version, about, long_about = None,arg_required_else_help(true))]
 struct Args {
-    #[clap(help="Specify directories to check for largest files", value_hint = ValueHint::DirPath)]
+    #[arg(help="Specify directories to check for largest files", value_hint = ValueHint::DirPath)]
     dirs: Vec<String>,
-    #[clap(default_value_t = 10, short = 'n', help = "Number of files to display")]
+    #[arg(default_value_t = 10, short = 'n', help = "Number of files to display")]
     numfiles: usize,
-    #[clap(short = 'X', help = "Don't descend into other file systems")]
+    #[arg(short = 'X', help = "Don't descend into other file systems")]
     xdev: bool,
-    #[clap(short = 'G', help = "Show sizes in powers of ten")]
+    #[arg(short = 'G', help = "Show sizes in powers of ten")]
     gigabyte: bool,
-    #[clap(long = "skip-hidden", help = "Skip hidden files and directories")]
+    #[arg(long = "skip-hidden", help = "Skip hidden files and directories")]
     skip_hidden: bool,
-    #[clap(long = "generate-completion", group = "only_one", value_enum)]
+    #[arg(long = "generate-completion", group = "only_one", value_enum)]
     generator: Option<Shell>,
 }
 
