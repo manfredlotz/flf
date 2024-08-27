@@ -1,3 +1,13 @@
+ _____________________________________________
+/ This repository has been moved to codeberg. \
+\ https://codeberg.org/ManfredLotz/flf        /
+ ---------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
 # Find largest files in directory trees
 
 `flf` is a simple to use program to find the largest files in one or more directory trees.
